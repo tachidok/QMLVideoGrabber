@@ -4,34 +4,34 @@ import QtQuick.Layouts 1.0
 
 ApplicationWindow {
     visible: true
-    width: 640
-    height: 480
-    title: qsTr("Hello World")
+    width: 1280
+    height: 960
+    title: qsTr("QMLVideoGrabber")
 
-    SwipeView {
-        id: swipeView
-        anchors.fill: parent
-        currentIndex: tabBar.currentIndex
-
-        Page1 {
-        }
-
-        Page {
-            Label {
-                text: qsTr("Second page")
-                anchors.centerIn: parent
+    Row
+    {
+        Button {
+            id: btn_open_video
+            text: "Open video"
+            onClicked:
+            {
+                qml_grabber.initialise_video()
             }
         }
+
+        Button {
+            id: btn_update_video
+            text: "Update video"
+            onClicked:
+            {
+
+            }
+        }
+
+        Image { source: "image://colors/yellow"}
+        Image { source: "image://colors/red" }
+
     }
 
-    footer: TabBar {
-        id: tabBar
-        currentIndex: swipeView.currentIndex
-        TabButton {
-            text: qsTr("First")
-        }
-        TabButton {
-            text: qsTr("Second")
-        }
-    }
 }
+

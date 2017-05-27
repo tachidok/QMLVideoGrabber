@@ -17,7 +17,16 @@ public:
     ~CCQmlGrabber();
 
     // Initialise the video capture
-    Q_INVOKABLE const int initialise_video();
+    const int initialise_video();
+
+    // Read frame
+    const int read_frame();
+
+    // Initialise the timer for video capture
+    Q_INVOKABLE const int initialise_timer();
+
+    // Get a pointer to the grabber
+    inline CCGrabber *grabber_pt() {return Grabber_pt;}
 
 signals:
 

@@ -5,7 +5,7 @@ CCQmlGrabber::CCQmlGrabber(QObject *parent) :
     Initialised_grabber_object(false)
 {
     // Initialise grabber object
-    string device = "/dev/video0";
+    string device = "/dev/video2";
     string format = "NTSC";
 
     Grabber_pt = new CCGrabber(device, format);
@@ -36,16 +36,32 @@ const int CCQmlGrabber::initialise_video()
         return 0;
     }
 
-    // Try to initialise video
-    bool initialised = Grabber_pt->initialise_video();
-    // Only start timer if video was correctly initialised
-    if (initialised)
+    // Initialise video
+    Grabber_pt->initialise_video();
+
+    return 1;
+
+}
+
+// Read frame
+const int CCQmlGrabber::read_frame()
+{
+    if (!Initialised_grabber_object)
     {
-        Timer->start(TIMER_TIMEOUT);
+        return 0;
     }
 
-    return initialised;
+    // Initialise video
+    Grabber_pt->read_frame();
 
+    return 1;
+}
+
+// Initialise the timer for video capture
+const int CCQmlGrabber::initialise_timer()
+{
+    // Initiliase timmer
+    Timer->start(TIMER_TIMEOUT);
 }
 
 void CCQmlGrabber::trigger_frame_capture()

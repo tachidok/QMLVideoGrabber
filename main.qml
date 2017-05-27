@@ -15,7 +15,7 @@ ApplicationWindow {
             text: "Open video"
             onClicked:
             {
-                qml_grabber.initialise_video()
+                qml_grabber.initialise_timer()
             }
         }
 
@@ -29,7 +29,7 @@ ApplicationWindow {
         }
 
         Image { source: "image://colors/yellow"}
-        Image { source: "image://colors/red" }
+        //Image { source: "image://colors/red" }
 
     }
 

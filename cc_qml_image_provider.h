@@ -3,6 +3,7 @@
 
 #include <QQuickImageProvider>
 #include "src/cc_grabber.h"
+#include <QtDebug>
 
 class CCQmlImageProvider : public QQuickImageProvider
 {

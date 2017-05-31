@@ -6,7 +6,7 @@
 #include <QtDebug>
 
 #include "src/cc_grabber.h"
-#define TIMER_TIMEOUT 1000
+#define TIMER_TIMEOUT 30
 
 class CCQmlGrabber : public QObject
 {
@@ -47,5 +47,12 @@ protected:
     QTimer *Timer;
 
 };
+
+
+//#define THIS
+#ifdef THIS
+// Live code
+int a = 3;
+#endif
 
 #endif // CCQMLGRABBER_H

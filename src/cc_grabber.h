@@ -99,6 +99,8 @@ protected:
     // Video device standard for v4l2
     int Video_device_standard_for_v4l2;
 
+    int DELETE_ME_COUNTER;
+
     int xioctl (int fd, int request, void *arg);
     sbuffer *init_mmap (int * fd, char * dev_name, int * n_buffers);
     void open_device (int * fd, char * dev_name);

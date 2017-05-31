@@ -22,16 +22,8 @@ CCQmlImageProvider::~CCQmlImageProvider()
 // =============================================================
 QPixmap CCQmlImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
 {
-    int width = 100;
-    int height = 50;
-
-    if (size)
-        *size = QSize(width, height);
-    QPixmap pixmap(requestedSize.width() > 0 ? requestedSize.width() : width,
-                   requestedSize.height() > 0 ? requestedSize.height() : height);
-    pixmap.fill(QColor(id).rgba());
-
     QImage qimage(Grabber_pt->image_pt(), Grabber_pt->width(), Grabber_pt->height(), Grabber_pt->bpl(), QImage::Format_RGB888);
+    qDebug() << "New pixmap";
     //ui->lbl_image->setPixmap(QPixmap::fromImage(qimage));
 
     //return pixmap;

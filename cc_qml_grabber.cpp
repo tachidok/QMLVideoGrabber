@@ -5,7 +5,7 @@ CCQmlGrabber::CCQmlGrabber(QObject *parent) :
     Initialised_grabber_object(false)
 {
     // Initialise grabber object
-    string device = "/dev/video2";
+    string device = "/dev/video0";
     string format = "NTSC";
 
     Grabber_pt = new CCGrabber(device, format);

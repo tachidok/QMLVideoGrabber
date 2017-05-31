@@ -626,6 +626,9 @@ void CCGrabber::process2a(unsigned int *start, int w, int h)
                        r=0;
                        g=255;
                        b=255;
+                       r = 0;
+                       g = DELETE_ME_COUNTER;
+                       b = DELETE_ME_COUNTER;
                    }
 
                    *pixel_24_l++ = r;
@@ -654,5 +657,14 @@ void CCGrabber::process2a(unsigned int *start, int w, int h)
                 pixel_24=pixel_24_AUX;
                 pixel_16+=w/2;
         }
+
+        //TODO
+        DELETE_ME_COUNTER+=10;
+        if (DELETE_ME_COUNTER>255)
+        {
+            DELETE_ME_COUNTER=0;
+        }
+
+        fprintf(stderr, "DELETE_ME_COUNTER: %d\n", DELETE_ME_COUNTER);
 
 }

@@ -13,6 +13,11 @@ ApplicationWindow {
 
     color: "black"
 
+    property int top: 0
+    property int left: 0
+    property int bottom: 480
+    property int right: 640
+
     property string camera0_input_device: "/dev/video0"
     property string camera1_input_device: "/dev/video1"
     property string camera2_input_device: "/dev/video2"
@@ -22,54 +27,26 @@ ApplicationWindow {
 
     Camera {
         id: camera0
-        captureMode: Camera.CaptureStillImage
-        //deviceId: camera0_input_device
-
-        imageCapture {
-            onImageCaptured: {
-                stillControls.previewAvailable = true
-            }
-        }
-
+        captureMode: Camera.CaptureViewfinder
+        deviceId: camera0_input_device
     }
 
     Camera {
         id: camera1
-        captureMode: Camera.CaptureStillImage
-        //deviceId: camera1_input_device
-
-        imageCapture {
-            onImageCaptured: {
-                stillControls.previewAvailable = true
-            }
-        }
-
+        captureMode: Camera.CaptureViewfinder
+        deviceId: camera1_input_device
     }
 
     Camera {
         id: camera2
-        captureMode: Camera.CaptureStillImage
-        //deviceId: camera2_input_device
-
-        imageCapture {
-            onImageCaptured: {
-                stillControls.previewAvailable = true
-            }
-        }
-
+        captureMode: Camera.CaptureViewfinder
+        deviceId: camera2_input_device
     }
 
     Camera {
         id: camera3
-        captureMode: Camera.CaptureStillImage
-        //deviceId: camera3_input_device
-
-        imageCapture {
-            onImageCaptured: {
-                stillControls.previewAvailable = true
-            }
-        }
-
+        captureMode: Camera.CaptureViewfinder
+        deviceId: camera3_input_device
     }
 
     VideoOutput {
@@ -82,7 +59,7 @@ ApplicationWindow {
         height: 480
         source: camera0
         autoOrientation: true
-
+        focus: visible
     }
 
     VideoOutput {
@@ -95,6 +72,7 @@ ApplicationWindow {
         height: 480
         source: camera1
         autoOrientation: true
+        focus: visible
 
     }
 
@@ -108,6 +86,7 @@ ApplicationWindow {
         height: 480
         source: camera2
         autoOrientation: true
+        focus: visible
 
     }
 
@@ -121,6 +100,7 @@ ApplicationWindow {
         height: 480
         source: camera3
         autoOrientation: true
+        focus: visible
 
     }
 
@@ -135,8 +115,21 @@ ApplicationWindow {
         id: btns_column0
         spacing: 8
 
+        /*ListView {
+            model: QtMultimedia.availableCameras
+            delegate: Text {
+                text: modelData.displayName
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: camera1.deviceId = modelData.deviceId
+                }
+            }
+        }*/
+
         Label {
             text: camera0_input_device
+            //text: camera0.displayName
             color: "white"
         }
 
@@ -144,7 +137,13 @@ ApplicationWindow {
             text: "/dev/video0"
             onClicked: {
                 camera0_input_device = "/dev/video0"
-                camera0.deviceId = camera0_input_device
+                //camera0.deviceId = camera0_input_device
+                viewFinder0.x = 0
+                viewFinder0.y = 0
+                viewFinder0.visible = true
+                viewFinder1.visible = false
+                viewFinder2.visible = false
+                viewFinder3.visible = false
             }
         }
 
@@ -152,7 +151,13 @@ ApplicationWindow {
             text: "/dev/video1"
             onClicked: {
                 camera0_input_device = "/dev/video1"
-                camera0.deviceId = camera0_input_device
+                //camera0.deviceId = camera0_input_device
+                viewFinder1.x = 0
+                viewFinder1.y = 0
+                viewFinder0.visible = false
+                viewFinder1.visible = true
+                viewFinder2.visible = false
+                viewFinder3.visible = false
             }
         }
 
@@ -160,7 +165,13 @@ ApplicationWindow {
             text: "/dev/video2"
             onClicked: {
                 camera0_input_device = "/dev/video2"
-                camera0.deviceId = camera0_input_device
+                //camera0.deviceId = camera0_input_device
+                viewFinder2.x = 0
+                viewFinder2.y = 0
+                viewFinder0.visible = false
+                viewFinder1.visible = false
+                viewFinder2.visible = true
+                viewFinder3.visible = false
             }
         }
 
@@ -168,7 +179,13 @@ ApplicationWindow {
             text: "/dev/video3"
             onClicked: {
                 camera0_input_device = "/dev/video3"
-                camera0.deviceId = camera0_input_device
+                //camera0.deviceId = camera0_input_device
+                viewFinder3.x = 0
+                viewFinder3.y = 0
+                viewFinder0.visible = false
+                viewFinder1.visible = false
+                viewFinder2.visible = false
+                viewFinder3.visible = true
             }
         }
 
@@ -194,6 +211,7 @@ ApplicationWindow {
 
         Label {
             text: camera1_input_device
+            //text: camera1.displayName
             color: "white"
         }
 
@@ -201,7 +219,14 @@ ApplicationWindow {
             text: "/dev/video0"
             onClicked: {
                 camera1_input_device = "/dev/video0"
-                camera1.deviceId = camera1_input_device
+                //camera1.deviceId = camera1_input_device
+                viewFinder0.x = 640
+                viewFinder0.y = 0
+                viewFinder0.visible = true
+                viewFinder1.visible = false
+                viewFinder2.visible = false
+                viewFinder3.visible = false
+
             }
         }
 
@@ -209,7 +234,13 @@ ApplicationWindow {
             text: "/dev/video1"
             onClicked: {
                 camera1_input_device = "/dev/video1"
-                camera1.deviceId = camera1_input_device
+                //camera1.deviceId = camera1_input_device
+                viewFinder1.x = 640
+                viewFinder1.y = 0
+                viewFinder0.visible = false
+                viewFinder1.visible = true
+                viewFinder2.visible = false
+                viewFinder3.visible = false
             }
         }
 
@@ -217,7 +248,13 @@ ApplicationWindow {
             text: "/dev/video2"
             onClicked: {
                 camera1_input_device = "/dev/video2"
-                camera1.deviceId = camera1_input_device
+                //camera1.deviceId = camera1_input_device
+                viewFinder2.x = 640
+                viewFinder2.y = 0
+                viewFinder0.visible = false
+                viewFinder1.visible = false
+                viewFinder2.visible = true
+                viewFinder3.visible = false
             }
         }
 
@@ -225,7 +262,13 @@ ApplicationWindow {
             text: "/dev/video3"
             onClicked: {
                 camera1_input_device = "/dev/video3"
-                camera1.deviceId = camera1_input_device
+                //camera1.deviceId = camera1_input_device
+                viewFinder3.x = 640
+                viewFinder3.y = 0
+                viewFinder0.visible = false
+                viewFinder1.visible = false
+                viewFinder2.visible = false
+                viewFinder3.visible = true
             }
         }
 
@@ -251,6 +294,7 @@ ApplicationWindow {
 
         Label {
             text: camera2_input_device
+            //text: camera2.displayName
             color: "white"
         }
 
@@ -258,7 +302,13 @@ ApplicationWindow {
             text: "/dev/video0"
             onClicked: {
                 camera2_input_device = "/dev/video0"
-                camera2.deviceId = camera2_input_device
+                //camera2.deviceId = camera2_input_device
+                viewFinder0.x = 0
+                viewFinder0.y = 480
+                viewFinder0.visible = true
+                viewFinder1.visible = false
+                viewFinder2.visible = false
+                viewFinder3.visible = false
             }
         }
 
@@ -266,7 +316,13 @@ ApplicationWindow {
             text: "/dev/video1"
             onClicked: {
                 camera2_input_device = "/dev/video1"
-                camera2.deviceId = camera2_input_device
+                //camera2.deviceId = camera2_input_device
+                viewFinder1.x = 0
+                viewFinder1.y = 480
+                viewFinder0.visible = false
+                viewFinder1.visible = true
+                viewFinder2.visible = false
+                viewFinder3.visible = false
             }
         }
 
@@ -274,7 +330,13 @@ ApplicationWindow {
             text: "/dev/video2"
             onClicked: {
                 camera2_input_device = "/dev/video2"
-                camera2.deviceId = camera2_input_device
+                //camera2.deviceId = camera2_input_device
+                viewFinder2.x = 0
+                viewFinder2.y = 480
+                viewFinder0.visible = false
+                viewFinder1.visible = false
+                viewFinder2.visible = true
+                viewFinder3.visible = false
             }
         }
 
@@ -282,7 +344,13 @@ ApplicationWindow {
             text: "/dev/video3"
             onClicked: {
                 camera2_input_device = "/dev/video3"
-                camera2.deviceId = camera2_input_device
+                //camera2.deviceId = camera2_input_device
+                viewFinder3.x = 0
+                viewFinder3.y = 480
+                viewFinder0.visible = false
+                viewFinder1.visible = false
+                viewFinder2.visible = false
+                viewFinder3.visible = true
             }
         }
 
@@ -309,6 +377,7 @@ ApplicationWindow {
 
         Label {
             text: camera3_input_device
+            //text: camera3.displayName
             color: "white"
         }
 
@@ -316,7 +385,13 @@ ApplicationWindow {
             text: "/dev/video0"
             onClicked: {
                 camera3_input_device = "/dev/video0"
-                camera3.deviceId = camera3_input_device
+                //camera3.deviceId = camera3_input_device
+                viewFinder0.x = 640
+                viewFinder0.y = 480
+                viewFinder0.visible = true
+                viewFinder1.visible = false
+                viewFinder2.visible = false
+                viewFinder3.visible = false
             }
         }
 
@@ -324,7 +399,13 @@ ApplicationWindow {
             text: "/dev/video1"
             onClicked: {
                 camera3_input_device = "/dev/video1"
-                camera3.deviceId = camera3_input_device
+                //camera3.deviceId = camera3_input_device
+                viewFinder1.x = 640
+                viewFinder1.y = 480
+                viewFinder0.visible = false
+                viewFinder1.visible = true
+                viewFinder2.visible = false
+                viewFinder3.visible = false
             }
         }
 
@@ -332,7 +413,13 @@ ApplicationWindow {
             text: "/dev/video2"
             onClicked: {
                 camera3_input_device = "/dev/video2"
-                camera3.deviceId = camera3_input_device
+                //camera3.deviceId = camera3_input_device
+                viewFinder2.x = 640
+                viewFinder2.y = 480
+                viewFinder0.visible = false
+                viewFinder1.visible = false
+                viewFinder2.visible = true
+                viewFinder3.visible = false
             }
         }
 
@@ -340,7 +427,13 @@ ApplicationWindow {
             text: "/dev/video3"
             onClicked: {
                 camera3_input_device = "/dev/video3"
-                camera3.deviceId = camera3_input_device
+                //camera3.deviceId = camera3_input_device
+                viewFinder3.x = 640
+                viewFinder3.y = 480
+                viewFinder0.visible = false
+                viewFinder1.visible = false
+                viewFinder2.visible = false
+                viewFinder3.visible = true
             }
         }
 
